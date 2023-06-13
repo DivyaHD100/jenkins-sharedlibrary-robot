@@ -1,11 +1,12 @@
 def lintchecks(COMPONENT) {
     sh''' 
+        echo lint checks for ${COMPONENT}
         echo installing jslint
         #npm install jslint
         #ls -ltr node_modules/jslint/bin
         #node_modules/jslint/bin/jslint.js server.js
-        echo PERFORMING LINT CHECKS  
-        echo PERFORMING LINT CHECKS COMPLETED  
+        echo PERFORMING LINT CHECKS for ${COMPONENT}  
+        echo PERFORMING LINT CHECKS COMPLETED for ${COMPONENT}  
     '''                
 }
 
