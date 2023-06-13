@@ -13,9 +13,9 @@ def lintchecks(COMPONENT) {
 def call() {
     pipeline {
         agent any
-        stages {
-            stage ('Lint checks') {
-                step {
+            stages {
+            stage('Lint checks') {
+                steps {
                     script {
                         lintchecks()
                     }
