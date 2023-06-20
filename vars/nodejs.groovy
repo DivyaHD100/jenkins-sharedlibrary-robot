@@ -10,6 +10,13 @@ def lintchecks(COMPONENT) {
     '''                
 }
 
+def sonarChecks(){
+    sh '''
+        sonar-scanner -Dsonar.host.url=https://172.31.93.227:9000 -Dsonar.sources=. -Dsonar.projectKey=$(COMPONENT)
+
+    '''
+}
+
 // Call is the default function which will be called when you call the fileName
 def call() {
     pipeline {
@@ -19,6 +26,13 @@ def call() {
                 steps {
                     script {
                         lintchecks()
+                    }
+                }
+            }
+            stage('Sonar checks') {
+                steps {
+                    script {
+                        sonarChecks()
                     }
                 }
             }
