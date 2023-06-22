@@ -22,11 +22,6 @@ def call() {
     pipeline {
         agent any
             stages {
-                stage('dependencies') {
-                steps {
-                        sh "npm install"
-                    }
-                }
             
             stage('Lint checks') {
                 steps {
