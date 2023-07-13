@@ -18,6 +18,13 @@ def call() {
                     }
                 }
             }
+            stage('Sonar checks') {
+                steps {
+                    script {
+                        common.sonarChecks()
+                    }
+                }
+            }
         }
     }
 }
