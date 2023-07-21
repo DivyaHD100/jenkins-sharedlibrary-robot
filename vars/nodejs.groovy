@@ -82,7 +82,10 @@ def call() {
                         }
                     }
                 stage('Publish the artifacts') {
-                    when { expression { env.TAG_NAME != null } }
+                    when { 
+                        expression { env.TAG_NAME != null }
+                        expression { env.UPLOAD_STATUS == ""}
+                        }
                     steps {
                         sh "curl -f -v -u ${NEXUS_USR}:${NEXUS_PSW} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://${NEXUS_URL}:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip" 
                         }
