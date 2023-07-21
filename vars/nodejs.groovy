@@ -60,10 +60,18 @@ def call() {
                 
                 }
             }
+                stage('Checking the artifact version') {
+                    when { expression { env.TAG_NAME != null } }
+                    steps {
+                        env.UPLOAD_STATUS=sh(returnStdout: true, script: 'curl -L -s http://${NEXUS_URL}:8081/service/rest/repository/browse/${COMPONENT} | grep ${COMPONENT}-${TAG_NAME}.zip || true')
+                        print UPLOAD_STATUS
+                        }
+                    }
                 stage('prepare the artifacts') {
                     when { expression { env.TAG_NAME != null } }
                     steps {
                         sh "npm install"
+                        sh "echo Preparing the artifacts"
                         sh "zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js"
                         }
                     }
