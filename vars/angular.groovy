@@ -1,4 +1,4 @@
-def call {
+def call() {
     node {
         env.APP_TYPE = "angular"
         common.lintChecks()
