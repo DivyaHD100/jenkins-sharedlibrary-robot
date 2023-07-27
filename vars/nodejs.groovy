@@ -5,6 +5,9 @@ def call() {
         env.ARGS = "-Dsonar.sources=."
         common.sonarChecks()
         common.testCases()
+        if(env.TAG_NAME != null) {
+            common.artifacts()
+        }
     }
 
 }
@@ -78,7 +81,7 @@ def call() {
 //                     steps {
 //                         sh "npm install"
 //                         sh "echo Preparing the artifacts"
-//                         sh "zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js"
+//                         sh "zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules server.js"
 //                         }
 //                     }
 //                 stage('Publish the artifacts') {
