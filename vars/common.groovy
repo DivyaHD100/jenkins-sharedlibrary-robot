@@ -8,3 +8,43 @@ def sonarChecks() {
 }
 
 //-x to run in debug mode 
+
+def lintChecks() {
+  stage('Lint Checks') {
+        if(env.APP_TYPE == "maven") {
+             sh '''  
+                echo Lint Checks for ${COMPONENT}
+                # mvn checkstyle:check
+                echo performing lint checks for ${COMPONENT}
+                echo performing lint checks completed ${COMPONENT}
+              
+              '''         
+        } 
+        else if(env.APP_TYPE == "nodejs") {
+              sh '''  
+                      echo Lint Checks for ${COMPONENT}
+                      echo installing jslint
+                      # npm install jslint
+                      # ls -ltr node_modules/jslint/bin/
+                      # node_modules/jslint/bin/jslint.js server.js
+                      echo performing lint checks for ${COMPONENT}
+                      echo performing lint checks completed ${COMPONENT}
+              ''' 
+        }
+        else if(env.APP_TYPE == "python") { 
+              sh '''  
+                      echo Lint Checks for ${COMPONENT}
+                      # pylint *.py
+                      echo performing lint checks for ${COMPONENT}
+                      echo performing lint checks completed ${COMPONENT}
+              ''' 
+        } 
+        else {
+              sh '''  
+                      echo Lint Checks for ${COMPONENT}
+                      echo performing lint checks for ${COMPONENT}
+                      echo performing lint checks completed ${COMPONENT}
+              ''' 
+        }
+    }
+}

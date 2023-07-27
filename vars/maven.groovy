@@ -1,10 +1,9 @@
-def lintchecks(COMPONENT) {
-    sh''' 
-        echo lint checks for ${COMPONENT}
-        # mvn checkstyle:check
-        echo PERFORMING LINT CHECKS for ${COMPONENT}  
-        echo PERFORMING LINT CHECKS COMPLETED for ${COMPONENT}  
-    '''                
+env.APP_TYPE = "maven"
+def call {
+    node {
+        common.lintChecks()
+    }
+
 }
 
 // Call is the default function which will be called when you call the fileName
