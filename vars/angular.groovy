@@ -1,9 +1,11 @@
-def lintchecks(COMPONENT) {
-    sh''' 
-        echo lint checks for ${COMPONENT}
-        echo PERFORMING LINT CHECKS for ${COMPONENT}  
-        echo PERFORMING LINT CHECKS COMPLETED for ${COMPONENT}  
-    '''                
+env.APP_TYPE = "angular"
+def call {
+    node {
+        common.lintChecks()
+        env.ARGS = "-Dsonar.sources=."
+        common.sonarChecks()
+    }
+
 }
 
 // Call is the default function which will be called when you call the fileName
