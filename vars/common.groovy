@@ -104,7 +104,7 @@ if(env.UPLOAD_STATUS == "") {
           sh '''
                echo "Frontend Component Is Executing"
                cd static/
-               zip -r ${COMPONENT}-${TAG_NAME}.zip *
+               zip -r ../${COMPONENT}-${TAG_NAME}.zip *
 
               '''
             }
